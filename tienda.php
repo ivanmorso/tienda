@@ -86,14 +86,19 @@ if($resultados == 0){
                 <?php
                 while (mysqli_stmt_fetch($consulta)){
                     echo "<tr>"
-                    . "<td> <img src = './imagenes/$imagenProducto'/> </td>"
+                    . "<td> <img src = './imagenes/$imagenProducto'width = '200' height='200'/> </td>"
                     . "<td> $nombreProducto </td>"
                     . "<td> $descripcionProducto </td>"
                     . "<td> $precioProducto </td>"
-                    . "<td> <form> <input type='number'/></form></td>";
+                    . "<td> <form> <input type='number'/></form></td>"
+                    . "<td> <form> <input type='submit' value='Añadir articulo'/>";
                 }
                 ?>
             </table>
+            
+            <form action="factura.php" method="POST">
+                <input type="submit" value="Finalizar pedido">
+            </form>
         </main>
         <footer>
             
