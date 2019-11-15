@@ -84,18 +84,20 @@ if($resultados == 0){
                     <th>Unidades a comprar</th>
                 </tr>
                 <?php
+                $contador = 1;
                 while (mysqli_stmt_fetch($consulta)){
                     echo "<tr>"
                     . "<td> <img src = './imagenes/$imagenProducto'width = '200' height='200'/> </td>"
                     . "<td> $nombreProducto </td>"
                     . "<td> $descripcionProducto </td>"
                     . "<td> $precioProducto </td>"
-                    . "<td> <form> <input type='number'/></form></td>"
-                    . "<td> <form> <input type='submit' value='Añadir articulo'/>";
+                    . "<td> <input type='number' name='precioArt$contador'/></td>";
+                    
+                    $contador ++;
                 }
+                
                 ?>
             </table>
-            
             <form action="factura.php" method="POST">
                 <input type="submit" value="Finalizar pedido">
             </form>
