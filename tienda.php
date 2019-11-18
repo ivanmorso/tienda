@@ -75,30 +75,30 @@ if($resultados == 0){
           
         </nav>
         <main>
-            <table>
-                <tr>
-                    <th>Imagen</th>
-                    <th>Nombre</th>
-                    <th>Descripcion</th>
-                    <th>Precio</th>
-                    <th>Unidades a comprar</th>
-                </tr>
-                <?php
-                $contador = 1;
-                while (mysqli_stmt_fetch($consulta)){
-                    echo "<tr>"
-                    . "<td> <img src = './imagenes/$imagenProducto'width = '200' height='200'/> </td>"
-                    . "<td> $nombreProducto </td>"
-                    . "<td> $descripcionProducto </td>"
-                    . "<td> $precioProducto </td>"
-                    . "<td> <input type='number' name='precioArt$contador'/></td>";
-                    
-                    $contador ++;
-                }
-                
-                ?>
-            </table>
             <form action="factura.php" method="POST">
+                <table>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Precio</th>
+                        <th>Unidades a comprar</th>
+                    </tr>
+                    <?php
+                    $contador = 1;
+                    while (mysqli_stmt_fetch($consulta)){
+                        echo "<tr>"
+                        . "<td> <img src = './imagenes/$imagenProducto'width = '200' height='200'/> </td>"
+                        . "<td> $nombreProducto </td>"
+                        . "<td> $descripcionProducto </td>"
+                        . "<td> $precioProducto </td>"
+                        . "<td> <input type='number' name='precioArt$contador'/></td>";
+
+                        $contador ++;
+                    }
+
+                    ?>
+                </table>
                 <input type="submit" value="Finalizar pedido">
             </form>
         </main>
