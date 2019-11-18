@@ -45,16 +45,16 @@ junto con un/unos botones de comprar
     //Transfiere un conjunto de resultados desde una sentencia preparada
     mysqli_stmt_store_result($consulta);
 
-//Cuenta las lineas que coincidan con la sentencia ejecutada
-$resultados = mysqli_stmt_num_rows($consulta);
+    //Cuenta las lineas que coincidan con la sentencia ejecutada
+    $resultados = mysqli_stmt_num_rows($consulta);
 
-if($resultados == 0){
-    $http = "Location: userLogged.php?";
-    $http .="mensaje=".urldecode("No existen productos");
-    
-    header($http);
-    exit;
-}
+    if($resultados == 0){
+        $http = "Location: userLogged.php?";
+        $http .="mensaje=".urldecode("No existen productos");
+
+        header($http);
+        exit;
+    }
 ?>  
 
 
@@ -85,18 +85,17 @@ if($resultados == 0){
                         <th>Unidades a comprar</th>
                     </tr>
                     <?php
-                    $contador = 1;
-                    while (mysqli_stmt_fetch($consulta)){
-                        echo "<tr>"
-                        . "<td> <img src = './imagenes/$imagenProducto'width = '200' height='200'/> </td>"
-                        . "<td> $nombreProducto </td>"
-                        . "<td> $descripcionProducto </td>"
-                        . "<td> $precioProducto </td>"
-                        . "<td> <input type='number' name='precioArt$contador'/></td>";
-
-                        $contador ++;
-                    }
-
+                        $contador = 1;
+                        while (mysqli_stmt_fetch($consulta)){
+                            echo "<tr>"
+                            . "<td> <img src = './imagenes/$imagenProducto' width = '200' height='200'/> </td>"
+                            . "<td><input type='hidden' name='nomProd$contador' value='$nombreProducto'> </td>"
+                            . "<td> $descripcionProducto </td>"
+                            . "<td><input type='hidden' name='precProd$contador' value='$precioProducto'> </td>"
+                            . "<td><input type='number' name='udProd$contador'></td>";
+                            
+                            $contador ++;
+                        }
                     ?>
                 </table>
                 <input type="submit" value="Finalizar pedido">
