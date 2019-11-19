@@ -24,7 +24,7 @@ junto con un/unos botones de comprar
     mysqli_set_charset($canal, "utf8");
     
     /*----------Busqueda de los productos----------*/
-    $sqlProductos = "SELECT nombre, precio, descripcion, imagen
+    $sqlProductos = "SELECT id_producto, nombre, precio, descripcion, imagen
                      FROM productos
                      ORDER BY id_producto;";
             
@@ -40,7 +40,7 @@ junto con un/unos botones de comprar
     mysqli_execute($consulta);
 
     //Agrego los resultado a variables
-    mysqli_stmt_bind_result($consulta, $nombreProducto, $precioProducto, $descripcionProducto, $imagenProducto);
+    mysqli_stmt_bind_result($consulta, $idProducto, $nombreProducto, $precioProducto, $descripcionProducto, $imagenProducto);
     
     //Transfiere un conjunto de resultados desde una sentencia preparada
     mysqli_stmt_store_result($consulta);
@@ -85,16 +85,13 @@ junto con un/unos botones de comprar
                         <th>Unidades a comprar</th>
                     </tr>
                     <?php
-                        $contador = 1;
                         while (mysqli_stmt_fetch($consulta)){
                             echo "<tr>"
                             . "<td> <img src = './imagenes/$imagenProducto' width = '200' height='200'/> </td>"
-                            . "<td><input type='hidden' name='nomProd$contador' value='$nombreProducto'> </td>"
+                            . "<td>$nombreProducto</td>"
                             . "<td> $descripcionProducto </td>"
-                            . "<td><input type='hidden' name='precProd$contador' value='$precioProducto'> </td>"
-                            . "<td><input type='number' name='udProd$contador'></td>";
-                            
-                            $contador ++;
+                            . "<td>$precioProducto</td>"
+                            . "<td><input type='number' name='cantidad$idProducto'></td>";
                         }
                     ?>
                 </table>
