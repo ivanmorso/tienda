@@ -91,10 +91,11 @@ junto con un/unos botones de comprar
                             . "<td>$nombreProducto</td>"
                             . "<td> $descripcionProducto </td>"
                             . "<td>$precioProducto</td>"
-                            . "<td><input type='number' name='cantidad$idProducto'></td>";
+                            . "<td><input type='number' name='cantidad$idProducto'></td>";   
                         }
                     ?>
                 </table>
+                <input type="hidden" value="$nombreUsuario">
                 <input type="submit" value="Finalizar pedido">
             </form>
         </main>
